@@ -1,0 +1,36 @@
+{
+  "name": "stream-data-app",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "index.js",
+  "scripts": {
+    "dev": "func start ",
+    "start": " nodemon index.js",
+    "test": "echo \"No tests yet...\""
+  },
+  "dependencies": {
+    "@azure/functions": "^4.0.0",
+    "axios": "^1.7.9",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.2",
+    "express": "^4.21.2",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.1.1",
+    "nodemon": "^3.1.0"
+  },
+  "main": "src/functions/*.js",
+  "nodemon": "^3.0.3",
+  "bcryptjs": "^2.4.3",
+  "cors": "^2.8.5",
+  "dotenv": "^16.4.2",
+  "express": "^4.18.2",
+  "express-async-handler": "^1.2.0",
+  "jsonwebtoken": "^9.0.2",
+  "mongoose": "^8.1.1",
+  "builds": {
+    "src": "package.json",
+    "use": "vercel-sapper"
+  }
+}

@@ -1,0 +1,3 @@
+runtime: nodejs18
+env: standard
+inctance_class: F1
