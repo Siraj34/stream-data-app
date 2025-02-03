@@ -8,6 +8,7 @@ import expressAsyncHandler from 'express-async-handler'
 import { generateToken, isAuth } from '../generetison.js'
 import Movies from '../model/movie.js'
 import Album from '../model/albumVideo.js'
+import Order from '../model/order.js'
 const userRouter = express.Router()
 
 userRouter.get('/get', (req, res) => {
@@ -234,6 +235,24 @@ userRouter.put('/unfollow', isAuth, async (req, res) => {
         return res.status(422).json({ error: err })
       })
   )
+})
+
+
+userRouter.get('/order/:id', (req, res) => {
+  
+      Order.find({postBy:{$in: req.user} })
+        .populate('postBy', '_id')
+        .then((post, err) => {
+          if (err) {
+            return res.status(422).json({ message: err })
+          }
+          res.status(200).json({  post })
+        })
+   
+  
+    .catch((err) => {
+      return res.status(404).json({ error: err })
+    })
 })
 
 

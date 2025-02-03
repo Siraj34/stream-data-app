@@ -240,6 +240,49 @@ MovieRouter.post('/dislike/:postId/:userId', async (req, res) => {
 })
 
 
+MovieRouter.get("/myfollwingpost",isAuth, (req, res) => {
+
+  User.find( {following:{ $in: req.user } })
+      .populate("following", "_id name")
+      
+      .then(posts => {
+          res.json(posts)
+      })
+      .catch(err => { console.log(err) })
+})
+
+
+MovieRouter.get("/myfollowers",isAuth, (req, res) => {
+
+  User.find( {followers:{ $in: req.user } })
+      .populate("followers", "_id name")
+      
+      .then(posts => {
+          res.json(posts)
+      })
+      .catch(err => { console.log(err) })
+})
+
+
+
+MovieRouter.get('/',isAuth, (req, res) => {
+  Movie.find({ postBy: { $inc:req.user.followers } })
+  .then((user) => {
+    Movie.find({ postBy: { $i: req.user.followers } })
+      .populate('postBy', '_id')
+      .then((post, err) => {
+        if (err) {
+          return res.status(422).json({ message: err })
+        }
+        res.status(200).json({ user, post })
+      })
+  })
+
+  .catch((err) => {
+    return res.status(404).json({ error: err })
+  })
+})
+
 
 
 

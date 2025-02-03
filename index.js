@@ -11,6 +11,7 @@ import MovieRouter from './routes/movie.js'
 import CommentRouter from './routes/comment.js'
 import UpdateRouter from './routes/update.js'
 import userRouter from './routes/signup.js'
+import orderRouter from './routes/order.js'
 
 const app = express()
 dotenv.config()
@@ -44,6 +45,7 @@ app.use('/api/albums', AlbumRouter)
 app.use('/api/videos', VideoRouter)
 app.use('/api/movies', MovieRouter)
 app.use('/api/comments', CommentRouter)
+app.use('/api/orders', orderRouter)
 app.use('/api/upload', UpdateRouter)
 app.use('/api/user/', userRouter)
 
