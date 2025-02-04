@@ -11,11 +11,13 @@ orderRouter.post(
  async (req, res) => {
     const newOrder = new Order({
       imageUrl: req.body.imageUrl,
+      videoUrl:req.body.videoUrl,
       name: req.body.name,
       title: req.body.title,
       user: req.body.user,
       userName: req.body.userName,
       image:req.body.image,
+      postBy:req.body.postBy,
        postBy:req.user
     })
     const order = await newOrder.save()
