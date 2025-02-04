@@ -162,7 +162,7 @@ userRouter.put('/sub/:id',isAuth,async (req,res)=>
 
 
 
-userRouter.get('/user/comment/:id', (req, res) => {
+userRouter.get('/comment/:id', (req, res) => {
   User.findOne({ _id: req.params.id })
     .select('-password')
     .then((user) => {

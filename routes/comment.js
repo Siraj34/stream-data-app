@@ -6,7 +6,7 @@ import Video from '../model/video.js'
 const CommentRouter = express.Router()
 
 CommentRouter.post('/post',async (req, res) => {
-  const newComment = new Comment({ ...req.body, userId: req.user })
+  const newComment = new Comment({ ...req.body, postBy:req.body.postBy })
   try {
     const savedComment = await newComment.save()
     res.status(200).send(savedComment)
@@ -17,10 +17,10 @@ CommentRouter.post('/post',async (req, res) => {
 
 CommentRouter.get('/get/:id',async (req, res) => {
   try {
-    const comments = await Comment.find({ videoId: req.params.id })
+    const comments = await Comment.find({videoId:req.params.id} )
     res.status(200).json(comments)
   } catch (err) {
-    next(err)
+    console.log(err)
   }
 })
 

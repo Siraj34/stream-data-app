@@ -18,6 +18,9 @@ const CommentShema = new mongoose.Schema(
     name: {
       type: String,
     },
+    postBy: {
+      type: String,
+    },
     comments: [
       {
         comment: { type: String },
