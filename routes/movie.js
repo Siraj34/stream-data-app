@@ -27,6 +27,7 @@ MovieRouter.post('/post', isAuth, async (req, res) => {
     userEmail:req.body.userEmail,
     userName: req.body.userName,
     postBy: req.user,
+    tags:req.body.tags
   })
   const getVideo = await newVideo.save()
   res.status(201).send({ message: 'NEW Order Created', getVideo })
@@ -92,6 +93,18 @@ MovieRouter.get('/search', async (req, res) => {
   const query = req.query.q
   try {
     const videos = await Movie.find(
+       {name:{ $regex: `${query}`, $options: 'i' }}
+  ).limit(40)
+    res.status(200).json(videos)
+  } catch (err) {
+    console.log(err)
+  }
+})
+
+MovieRouter.get('/searchs', async (req, res) => {
+  const query = req.query.q
+  try {
+    const videos = await Movie.find(
        {slug:{ $regex: `${query}`, $options: 'i' }}
   ).limit(40)
     res.status(200).json(videos)
@@ -108,6 +121,17 @@ MovieRouter.get('/slug',async (req, res) => {
   res.send(categories)
 })
 
+
+MovieRouter.get('/tags', async (req, res) => {
+  const tags= req.query.tags
+ 
+  try {
+    const videos = await Movie.find({tags:{$in: tags}}).sort({views:-1})
+    res.status(200).json(videos)
+  } catch (err) {
+    console.log(err)
+  }
+})
 
 
 MovieRouter.put('/update/:id', isAuth, async (req, res) => {
