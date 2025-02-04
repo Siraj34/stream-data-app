@@ -17,6 +17,7 @@ orderRouter.post(
       user: req.body.user,
       userName: req.body.userName,
       image:req.body.image,
+      movieId:req.body.movieId,
       postBy:req.body.postBy,
        postBy:req.user
     })

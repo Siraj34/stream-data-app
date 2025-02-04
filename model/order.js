@@ -13,6 +13,7 @@ const orderSchema = new mongoose.Schema(
         user: { type: String, require: true },
         userName: { type: String, require: true },
         userEmail:{ type: String, require: true },
+        movieId:{ type: String, require: true },
         postBy:{ type: String, require: true },
         image: {
           type: String,
