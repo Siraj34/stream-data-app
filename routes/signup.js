@@ -9,6 +9,8 @@ import { generateToken, isAuth } from '../generetison.js'
 import Movies from '../model/movie.js'
 import Album from '../model/albumVideo.js'
 import Order from '../model/order.js'
+import Chat from '../model/chat.js'
+import PlayList from '../model/playList.js'
 const userRouter = express.Router()
 
 userRouter.get('/get', (req, res) => {
@@ -254,6 +256,49 @@ userRouter.get('/order/:id', (req, res) => {
       return res.status(404).json({ error: err })
     })
 })
+
+
+userRouter.get('/chat/:id', (req, res) => {
+  User.findOne({ _id: req.params.id })
+    .select('-password')
+    .then((user) => {
+      Chat.find({ postBy:req.params.id })
+        .populate('postBy', '_id')
+        .then((post, err) => {
+          if (err) {
+            return res.status(422).json({ message: err })
+          }
+          res.status(200).json({ user, post })
+        })
+    })
+  
+    .catch((err) => {
+      return res.status(404).json({ error: err })
+    })
+})
+
+
+userRouter.get('/playList/:id', (req, res) => {
+  User.findOne({ _id: req.params.id })
+    .select('-password')
+    .then((user) => {
+      PlayList.find({ postBy:req.params.id })
+        .populate('postBy', '_id')
+        .then((post, err) => {
+          if (err) {
+            return res.status(422).json({ message: err })
+          }
+          res.status(200).json({ user, post })
+        })
+    })
+  
+    .catch((err) => {
+      return res.status(404).json({ error: err })
+    })
+})
+
+
+
 
 
 

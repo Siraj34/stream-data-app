@@ -12,6 +12,8 @@ import CommentRouter from './routes/comment.js'
 import UpdateRouter from './routes/update.js'
 import userRouter from './routes/signup.js'
 import orderRouter from './routes/order.js'
+import chatRouter from './routes/chat.js'
+import playListRouter from './routes/playList.js'
 
 const app = express()
 dotenv.config()
@@ -46,6 +48,8 @@ app.use('/api/videos', VideoRouter)
 app.use('/api/movies', MovieRouter)
 app.use('/api/comments', CommentRouter)
 app.use('/api/orders', orderRouter)
+app.use('/api/chats', chatRouter)
+app.use('/api/playLists', playListRouter)
 app.use('/api/upload', UpdateRouter)
 app.use('/api/user/', userRouter)
 
