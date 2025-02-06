@@ -23,6 +23,7 @@ chatRouter.post(
       chatId:req.body.chatId,
       postBy:req.body.postBy,
       videoId:req.body.videoId,
+      videoName:req.body.videoName
        
     })
     const chat = await newChat.save()

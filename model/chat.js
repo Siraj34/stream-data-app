@@ -18,6 +18,7 @@ const ChatSchema = new mongoose.Schema(
         musicName: { type: String, require: true },
         title:{ type: String, require: true },
         imageUrl:{ type: String, require: true },
+        videoName: { type: String, require: true },
     
        
 
